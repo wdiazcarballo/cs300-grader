@@ -60,10 +60,10 @@ VAR_ROOT = os.path.join("/", "var", "local")
 
 # Do not prompt the user for interactive yes-or-no confirmations:
 # always assume yes! This is useful for programmatic use.
-ALWAYS_YES = False
+ALWAYS_YES = True
 # Allow to do operations that should normally be performed as an
 # unprivileged user (e.g., building) as root.
-AS_ROOT = False
+AS_ROOT = True
 # Do not even try to install configuration files (i.e., copying the
 # samples) when installing.
 NO_CONF = False
