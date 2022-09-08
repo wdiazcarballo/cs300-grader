@@ -1,0 +1,8 @@
+FROM wdiazcarballo/cs300-grader:pre
+
+COPY ./configPostgres.sh /app/configPostgres.sh
+COPY ./cms.conf /app/cms.conf
+
+RUN /app/configPostgres.sh
+RUN cp /app/cms.conf /usr/local/etc/cms.conf
+RUN cmsInitDB
