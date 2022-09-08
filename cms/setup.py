@@ -102,7 +102,7 @@ PACKAGE_DATA = {
 
 def find_version():
     """Return the version string obtained from cms/__init__.py"""
-    path = os.path.join("cms", "__init__.py")
+    path = os.path.join("/cms/cms/", "__init__.py")
     version_file = io.open(path, "rt", encoding="utf-8").read()
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
                               version_file, re.M)
@@ -137,19 +137,19 @@ setup(
     packages=find_packages(),
     package_data=PACKAGE_DATA,
     cmdclass={"build_py": build_py_and_l10n},
-    scripts=["scripts/cmsLogService",
-             "scripts/cmsScoringService",
-             "scripts/cmsEvaluationService",
-             "scripts/cmsWorker",
-             "scripts/cmsResourceService",
-             "scripts/cmsChecker",
-             "scripts/cmsContestWebServer",
-             "scripts/cmsAdminWebServer",
-             "scripts/cmsProxyService",
-             "scripts/cmsPrintingService",
-             "scripts/cmsRankingWebServer",
-             "scripts/cmsInitDB",
-             "scripts/cmsDropDB"],
+    scripts=["/cms/scripts/cmsLogService",
+             "/cms/scripts/cmsScoringService",
+             "/cms/scripts/cmsEvaluationService",
+             "/cms/scripts/cmsWorker",
+             "/cms/scripts/cmsResourceService",
+             "/cms/scripts/cmsChecker",
+             "/cms/scripts/cmsContestWebServer",
+             "/cms/scripts/cmsAdminWebServer",
+             "/cms/scripts/cmsProxyService",
+             "/cms/scripts/cmsPrintingService",
+             "/cms/scripts/cmsRankingWebServer",
+             "/cms/scripts/cmsInitDB",
+             "/cms/scripts/cmsDropDB"],
     entry_points={
         "console_scripts": [
             "cmsRunTests=cmstestsuite.RunTests:main",

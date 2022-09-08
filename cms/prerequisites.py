@@ -63,10 +63,10 @@ VAR_ROOT = os.path.join("/", "var", "local")
 ALWAYS_YES = True
 # Allow to do operations that should normally be performed as an
 # unprivileged user (e.g., building) as root.
-AS_ROOT = True
+AS_ROOT = False
 # Do not even try to install configuration files (i.e., copying the
 # samples) when installing.
-NO_CONF = False
+NO_CONF = True
 # The user and group that CMS will be run as: will be created and will
 # receive the correct permissions to access isolate, the configuration
 # file and the system directories.
@@ -212,7 +212,7 @@ def build_isolate():
     assert_not_root()
 
     print("===== Compiling isolate")
-    os.chdir("isolate")
+    os.chdir("/cms/isolate")
     # We make only the executable isolate, otherwise the tool a2x
     # is needed and we have to add more compilation dependencies.
     subprocess.call(["make", "isolate"])
