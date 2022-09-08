@@ -26,7 +26,7 @@ python3-crypto  python3-six python3-bs4 python3-coverage python3-mock python3-re
 python3-werkzeug python3-gevent python3-bcrypt python3-chardet patool \
 python3-babel python3-xdg python3-future python3-jinja2
 
-RUN  DEBIAN_FRONTEND=noninteractive apt-get install -y python3-yaml python3-sphinx python3-cups python3-pypdf2
+RUN  DEBIAN_FRONTEND=noninteractive apt-get install -y python3-yaml python3-sphinx python3-cups python3-pypdf2 screen
 
 RUN cd /cms; python3 setup.py install
 
@@ -38,6 +38,6 @@ RUN /app/configPostgres.sh
 RUN cd /cms; python3 prerequisites.py -y --as-root install
 RUN /usr/bin/screen -S cmsLogService -d -m /bin/bash -c '/usr/local/bin/cmsLogService'
 RUN /usr/bin/screen -S cmsResourceService -d -m /bin/bash -c '/usr/local/bin/cmsResourceService -a 1'
-
+RUN update-rc.d postgresql enable
 
 
