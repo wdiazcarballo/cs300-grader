@@ -6,7 +6,16 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Asia/UTC apt-get -y install tzdata
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential openjdk-8-jdk-headless fp-compiler postgresql postgresql-client python3.6 cppreference-doc-en-html cgroup-lite libcap-dev zip python3-pip
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nginx-full python2.7 php7.2-cli php7.2-fpm phppgadmin wget
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nginx-full python2.7 php7.2-cli php7.2-fpm phppgadmin wget apt-utils
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install locales-all
+RUN DEBIAN_FRONTEND=noninteractive locale-gen
+
+RUN sed -i '/th_TH.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen
+ENV LANG th_TH.UTF-8  
+ENV LANGUAGE th_TH:th
+ENV LC_ALL th_TH.UTF-8     
 
 COPY ./cms /cms
 RUN whoami
@@ -24,6 +33,7 @@ RUN cd /cms; python3 setup.py install
 COPY ./configPostgres.sh /app/configPostgres.sh
 COPY ./cms.conf /app/cms.conf
 
-RUN /app/configPostgres.sh
 RUN cp /app/cms.conf /usr/local/etc/cms.conf
-RUN cmsInitDB
+RUN /app/configPostgres.sh
+
+
