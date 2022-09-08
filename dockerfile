@@ -35,5 +35,9 @@ COPY ./cms.conf /app/cms.conf
 
 RUN cp /app/cms.conf /usr/local/etc/cms.conf
 RUN /app/configPostgres.sh
+RUN cd /cms; python3 prerequisites.py -y --as-root install
+RUN /usr/bin/screen -S cmsLogService -d -m /bin/bash -c '/usr/local/bin/cmsLogService'
+RUN /usr/bin/screen -S cmsResourceService -d -m /bin/bash -c '/usr/local/bin/cmsResourceService -a 1'
+
 
 
